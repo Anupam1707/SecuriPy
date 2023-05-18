@@ -1,4 +1,4 @@
-[![PyPi](https://img.shields.io/pypi/v/matplotlib)](https://pypi.org/project/SecuriPy/)
+[![PyPi](https://img.shields.io/pypi/v/SecuriPy)](https://pypi.org/project/SecuriPy/)
 # SecuriPy
 
 SecuriPy is a Python library that provides a set of functions for encrypting and decrypting human-readable messages into undefined non-readable characters. It offers a simple yet powerful way to protect sensitive information from unauthorized access.
