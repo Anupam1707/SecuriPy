@@ -6,7 +6,7 @@ class Text:
         """Generates a non-readable key to encrypt the text"""
         key = list(key) 
         for i in range(len(key)):
-            x = (ord(key[i]) + 200)
+            x = (ord(key[i]) + 100)
             key[i] = chr(x)
             
         if len(message) == len(key):
@@ -26,7 +26,7 @@ class Text:
         key = Text.pwd(message, password)
         encrypted_text = []
         for i in range(len(message)):
-            x = (ord(message[i]) +ord(key[i]) + 1000)
+            x = (ord(message[i]) +ord(key[i]) + 500)
             encrypted_text.append(chr(x))
         encrypted_text = ("" . join(encrypted_text))
         key = ("".join(key))
@@ -38,9 +38,12 @@ class Text:
         orig_text = []
         encrypted_text = text.split(" ")[0]
         key = Text.pwd(encrypted_text, password)
-        if key == text.split(" ")[1]:
+        if type(key) == list:
+            key = "".join(key)
+        print(encrypted_text, "\n", key)
+        if key == text.split(" ")[-1]:
             for i in range(len(encrypted_text)):
-                x = (ord(encrypted_text[i]) -ord(key[i]) - 1000)
+                x = (ord(encrypted_text[i]) -ord(key[i]) - 500)
                 orig_text.append(chr(x))
             orig_text = ("" . join(orig_text))
             return orig_text[:-1]
@@ -142,7 +145,7 @@ class File:
             k.write(Fernet.generate_key())
             
     @staticmethod
-    def Encrypt(file_path):
+    def Encrypt(file_path, key_path):
         from cryptography.fernet import Fernet
         from io import BytesIO
 
@@ -154,7 +157,7 @@ class File:
         def file_to_encrypted_file(file_path,output_path):        
             with open(file_path, "rb") as file:
                 file_data = file.read()
-            with open("key.txt","rb") as k:
+            with open(key_path,"rb") as k:
                     key = k.read()
             encrypted_data = encrypt_data(file_data, key)
             with open(output_path, 'wb') as f:
@@ -164,7 +167,7 @@ class File:
         encryption_key = file_to_encrypted_file(file_path, new_file_path)
 
     @staticmethod
-    def Decrypt(encrypted_file_path):
+    def Decrypt(encrypted_file_path, key_path):
         from cryptography.fernet import Fernet
 
         def decrypt_data(encrypted_data, key):
@@ -173,7 +176,7 @@ class File:
             return decrypted_data
 
         # Decrypt the encrypted image
-        with open("key.txt","rb") as k:
+        with open(key_path,"rb") as k:
             encryption_key = k.read()
         with open(encrypted_file_path, 'rb') as f:
             encrypted_data = f.read()
@@ -186,18 +189,18 @@ class File:
             f.write(decrypted_data)
 
     @staticmethod
-    def EncryptAll(path):
+    def EncryptAll(key_path):
         import os
-        files = os.listdir(path)
+        files = os.listdir()
 
         for file in files:
-                File.Encrypt(file)
+                File.Encrypt(file, key_path)
             
     @staticmethod
-    def DecryptAll():
+    def DecryptAll(key_path):
             import os
-            files = os.listdir(path)
+            files = os.listdir()
 
             for file in files:
-                    File.Decrypt(file)
+                    File.Decrypt(file, key_path)
             

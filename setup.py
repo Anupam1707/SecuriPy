@@ -5,16 +5,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="SecuriPy",
-    version="1.0.0",
+    version="2.0.4",
     author="Anupam Kanoongo",
     author_email="programmer.tiak@gmail.com",
-    description="Encrypter and Decrypter of Readable messages Using Python",
+    description="Encrypter and Decrypter of all types of human-readable file formats Using Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Anupam1707/SecuriPy",
+    url="https://pypi.org/project/SecuriPy",
     project_urls={
-        "Source Code": "https://raw.githubusercontent.com/Anupam1707/SecuriPy/main/SecuriPy.py",
-        "Documentation": "https://github.com/Anupam1707/SecuriPy/#readme",
         "Our Website": "https://techinfoak.wixsite.com/tech-info",
         "Our YT Handle": "https://youtube.com/@techinfoak"
     },
